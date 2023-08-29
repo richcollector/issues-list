@@ -1,0 +1,62 @@
+.listWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+
+	:hover {
+		background-color: #bdbdbd;
+	}
+
+	cursor: pointer;
+
+	.itemBox {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
+		width: 300px;
+		height: 60px;
+
+		padding: 5px 0;
+		border-bottom: 1px solid #bdbdbd;
+
+		.item {
+			width: 250px;
+			height: 50px;
+
+			.itemTitle {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+
+				font-size: 16px;
+				width: 250px;
+				height: 25px;
+
+				gap: 10px;
+			}
+			.itemContents {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 10px;
+
+				font-size: 14px;
+				width: 250px;
+				height: 25px;
+			}
+		}
+		.itemComment {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			font-size: 10px;
+			width: 50px;
+			height: 50px;
+		}
+	}
+}
