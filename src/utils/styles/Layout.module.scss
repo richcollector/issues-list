@@ -3,32 +3,60 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
 	.wrapper {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
 
-		width: 400px;
+		width: 600px;
 		height: 800px;
 		border: 1px solid #bdbdbd;
 		border-radius: 10px;
+
+		position: relative;
 		.header {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 
-			width: 300px;
+			width: 400px;
 			height: 50px;
 			.title {
-				font-size: 15px;
+				font-size: 20px;
 			}
 		}
 		.contents {
-			width: 300px;
+			width: 550px;
 			height: 600px;
 			border: 1px solid #bdbdbd;
+
+			overflow-y: scroll;
+		}
+
+		.contents::-webkit-scrollbar {
+			width: 10px;
+		}
+
+		.contents::-webkit-scrollbar-thumb {
+			height: 30%;
+			background: #2f4e7c;
+
+			border-radius: 10px;
 		}
 	}
+}
+
+.moveListBox {
+	position: absolute;
+	top: 130px;
+	right: 25px;
+
+	cursor: pointer;
+}
+
+.moveListBox:hover {
+	border-bottom: 4px solid orange;
 }

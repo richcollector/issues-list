@@ -1,7 +1,11 @@
+import styles from '../../utils/styles/Error.module.scss';
+
 function ErrorPage() {
 	return (
 		<>
-			<h1>관리자에게 문의해 주세요.</h1>
+			<div className={styles.errorBox}>
+				<h1>관리자에게 문의해 주세요.</h1>
+			</div>
 		</>
 	);
 }
