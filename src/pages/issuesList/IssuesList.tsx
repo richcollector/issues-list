@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useRef } from 'react';
 import styles from '../../utils/styles/IssuesList.module.scss';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../utils/constants/Routes';
@@ -8,17 +8,42 @@ import { getDate } from '../../utils/constants/getData';
 function IssuesListPage() {
 	const [list, setList] = useState([]);
 	const navigate = useNavigate();
+	const [page, setPage] = useState(15);
+	const containerRef = useRef(null);
 
 	useEffect(() => {
-		issuesList()
+		issuesList(page)
 			.then(res => {
-				console.log('res::', res);
 				setList(res.data);
 			})
 			.catch(error => {
 				console.error(error);
 			});
-	}, []);
+	}, [page]);
+
+	useEffect(() => {
+		const options = {
+			root: null,
+			rootMargin: '20px',
+			threshold: 1.0,
+		};
+
+		const observer = new IntersectionObserver(entries => {
+			if (entries[0].isIntersecting) {
+				setPage(page + 15);
+			}
+		}, options);
+
+		if (containerRef.current) {
+			observer.observe(containerRef.current);
+		}
+
+		return () => {
+			if (containerRef.current) {
+				observer.unobserve(containerRef.current);
+			}
+		};
+	}, [list]);
 
 	return (
 		<div className={styles.listWrapper}>
@@ -51,6 +76,7 @@ function IssuesListPage() {
 					</div>
 				</Fragment>
 			))}
+			<div ref={containerRef} style={{ height: '10px' }}></div>
 		</div>
 	);
 }
