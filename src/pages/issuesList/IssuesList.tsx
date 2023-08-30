@@ -1,13 +1,29 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import styles from '../../utils/styles/IssuesList.module.scss';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../utils/constants/Routes';
+import { issuesList } from '../../api/Api';
+import { getDate } from '../../utils/constants/getData';
+
 function IssuesListPage() {
+	const [list, setList] = useState([]);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		issuesList()
+			.then(res => {
+				console.log('res::', res);
+				setList(res.data);
+			})
+			.catch(error => {
+				console.error(error);
+			});
+	}, []);
+
 	return (
 		<div className={styles.listWrapper}>
-			{new Array(20).fill(1).map((item, index) => (
-				<Fragment key={index}>
+			{list.map((issues: any, index) => (
+				<Fragment key={issues.id}>
 					{index !== 0 && index % 4 === 0 && (
 						<div
 							className={styles.adBox}
@@ -15,22 +31,22 @@ function IssuesListPage() {
 								window.location.href = `${ROUTES.WANTED}`;
 							}}
 						>
-							<img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"></img>
+							<img src={`${ROUTES.WANTED_IMG}`} alt=""></img>
 						</div>
 					)}
-					<div className={styles.itemBox} onClick={() => navigate(`/${item}`)}>
+					<div className={styles.itemBox} onClick={() => navigate(`/${issues.number}`)}>
 						<div className={styles.item}>
 							<div className={styles.itemTitle}>
-								<span>#111</span>
-								<span>issue title</span>
+								<span>#{issues.number}</span>
+								<span>{issues.title}</span>
 							</div>
 							<div className={styles.itemContents}>
-								<span>작성자: name</span>
-								<span>작성일: 2019년 12월 31일</span>
+								<span>작성자: {issues.user.login}</span>
+								<span>작성일: {getDate(issues.created_at)}</span>
 							</div>
 						</div>
 						<div className={styles.itemComment}>
-							<span>코멘트: 10</span>
+							<span>코멘트: {issues.comments}</span>
 						</div>
 					</div>
 				</Fragment>
