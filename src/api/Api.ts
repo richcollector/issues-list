@@ -15,8 +15,8 @@ instance.interceptors.request.use(
 	},
 );
 
-export const issuesList = async () => {
-	const response = await instance.get('/issues?sort=comments');
+export const issuesList = async (page: number) => {
+	const response = await instance.get(`/issues?per_page=15&sort=comments&page=${page}`);
 	return response;
 };
 
