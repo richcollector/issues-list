@@ -3,6 +3,7 @@ import styles from '../../utils/styles/IssuesDetail.module.scss';
 import { issuesDetail } from '../../api/Api';
 import { useLocation } from 'react-router-dom';
 import { getDate } from '../../utils/constants/getData';
+import ReactMarkdown from 'react-markdown';
 
 function IssuesDetailPage() {
 	const [detail, setDetail] = useState<any>([]);
@@ -43,7 +44,9 @@ function IssuesDetailPage() {
 					<span>코멘트: {detail.comments}</span>
 				</div>
 			</div>
-			<div className={styles.contentsBox}>{detail.body}</div>
+			<div className={styles.contentsBox}>
+				<ReactMarkdown>{detail.body}</ReactMarkdown>
+			</div>
 		</div>
 	);
 }
