@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import styles from '../../utils/styles/IssuesDetail.module.scss';
 import { issuesDetail } from '../../api/Api';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getDate } from '../../utils/constants/getDate';
 import ReactMarkdown from 'react-markdown';
+import ROUTES from '../../utils/constants/Routes';
+import styles from '../../utils/styles/IssuesDetail.module.scss';
 
 function IssuesDetailPage() {
 	const [detail, setDetail] = useState<any>([]);
+	const navigate = useNavigate();
 	const location = useLocation();
 
 	useEffect(() => {
@@ -15,7 +17,7 @@ function IssuesDetailPage() {
 				setDetail(res.data);
 			})
 			.catch(error => {
-				console.error(error);
+				navigate(ROUTES.ERROR);
 			});
 	}, [location]);
 

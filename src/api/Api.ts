@@ -4,17 +4,6 @@ const instance = axios.create({
 	baseURL: process.env.REACT_APP_BASE_URL,
 });
 
-instance.interceptors.request.use(
-	config => {
-		config.headers.Authorization = `${process.env.REACT_APP_TOKEN}`;
-		return config;
-	},
-	error => {
-		console.error('An error occurred:', error);
-		return Promise.reject(error);
-	},
-);
-
 export const issuesList = async (page: number) => {
 	const response = await instance.get(`/issues?per_page=15&sort=comments&page=${page}`);
 	return response;

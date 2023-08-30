@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ROUTES from '../../utils/constants/Routes';
 import { issuesList } from '../../api/Api';
 import { getDate } from '../../utils/constants/getDate';
+import ROUTES from '../../utils/constants/Routes';
 import styles from '../../utils/styles/IssuesList.module.scss';
 
 function IssuesListPage() {
@@ -17,7 +17,7 @@ function IssuesListPage() {
 				setList((prev): any => [...prev, ...res.data]);
 			})
 			.catch(error => {
-				console.error(error);
+				navigate(ROUTES.ERROR);
 			});
 	}, [page]);
 
