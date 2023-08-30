@@ -1,9 +1,9 @@
 import { Fragment, useEffect, useState, useRef } from 'react';
-import styles from '../../utils/styles/IssuesList.module.scss';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../utils/constants/Routes';
 import { issuesList } from '../../api/Api';
-import { getDate } from '../../utils/constants/getData';
+import { getDate } from '../../utils/constants/getDate';
+import styles from '../../utils/styles/IssuesList.module.scss';
 
 function IssuesListPage() {
 	const [list, setList] = useState([]);
@@ -14,7 +14,6 @@ function IssuesListPage() {
 	useEffect(() => {
 		issuesList(page)
 			.then(res => {
-				console.log('data::', res.data);
 				setList((prev): any => [...prev, ...res.data]);
 			})
 			.catch(error => {
@@ -29,9 +28,11 @@ function IssuesListPage() {
 			threshold: 1.0,
 		};
 
+		const currentContainerRef = containerRef.current;
+
 		const observer = new IntersectionObserver(entries => {
 			if (entries[0].isIntersecting) {
-				setPage(page + 1);
+				setPage(prev => prev + 1);
 			}
 		}, options);
 
@@ -40,11 +41,11 @@ function IssuesListPage() {
 		}
 
 		return () => {
-			if (containerRef.current) {
-				observer.unobserve(containerRef.current);
+			if (currentContainerRef) {
+				observer.unobserve(currentContainerRef);
 			}
 		};
-	}, [list]);
+	}, [list, containerRef]);
 
 	return (
 		<div className={styles.listWrapper}>

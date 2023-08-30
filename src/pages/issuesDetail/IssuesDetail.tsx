@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../../utils/styles/IssuesDetail.module.scss';
 import { issuesDetail } from '../../api/Api';
 import { useLocation } from 'react-router-dom';
-import { getDate } from '../../utils/constants/getData';
+import { getDate } from '../../utils/constants/getDate';
 import ReactMarkdown from 'react-markdown';
 
 function IssuesDetailPage() {
@@ -12,13 +12,12 @@ function IssuesDetailPage() {
 	useEffect(() => {
 		issuesDetail(location.pathname)
 			.then(res => {
-				console.log('res::', res.data.body);
 				setDetail(res.data);
 			})
 			.catch(error => {
 				console.error(error);
 			});
-	}, []);
+	}, [location]);
 
 	return (
 		<div className={styles.listWrapper}>

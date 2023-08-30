@@ -6,14 +6,12 @@ import ROUTES from '../../utils/constants/Routes';
 function LayoutPage(props: { children: React.ReactNode }) {
 	const navigate = useNavigate();
 	const location = useLocation();
-
-	console.log(location.pathname);
 	return (
 		<>
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
 					<div className={styles.header}>
-						<span className={styles.title}> Organization Name / Repository Name</span>
+						<span className={styles.title}> Facebook / React</span>
 					</div>
 					<div className={styles.contents}>{props.children}</div>
 					{location.pathname !== '/' && (
