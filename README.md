@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+## 📚 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+특정 깃헙 [레파지토리](https://github.com/facebook/react/issues)의 이슈 목록과 상세 내용을 확인하는 웹 사이트 구축
 
-## Available Scripts
+## 🚀실행 방법
 
-In the project directory, you can run:
+```jsx
+$ npm install
+$ npm start
+```
 
-### `npm start`
+### 동작 영상
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img width='900px' src='https://github.com/richcollector/issues-list/assets/104312779/d0659d00-8da7-4512-9bd9-dbb3348b0815' alt='issues-list' />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🔧 기술 스택
 
-### `npm test`
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"> <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔥 과제 수행 방식
 
-### `npm run build`
+- [초기설정](https://github.com/richcollector/issues-list/issues/1)
+- [와이어 프레임 UI 설정](https://github.com/richcollector/issues-list/issues/2)
+- [API 설정](https://github.com/richcollector/issues-list/issues/3)
+- [인피니티스크롤](https://github.com/richcollector/issues-list/issues/4)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ✅ 컨벤션
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 브랜치 형식
+  ```jsx
+  main | (_feature / a) | (_feature / b) | (_feature / c);
+  ```
+- 커밋 컨벤션
+  | feat | 새로운 기능을 추가할 경우 |
+  | --- | --- |
+  | fix | 버그를 고친 경우 |
+  | docs | 문서를 수정한 경우 |
+  | style | 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우 |
+  | refactor | 프로덕션 코드 리팩토링 |
+  | test | test 관련한 코드의 추가, 수정한 경우 |
+  | design | CSS 등 사용자 UI 디자인 변경 |
+  | comment | 필요한 주석 추가 및 변경 |
+  | rename | 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우 |
+  | remove | 파일을 삭제하는 작업만 수행한 경우 |
+  | !HOTFIX | 급하게 치명적인 버그를 고쳐야하는 경우 |
