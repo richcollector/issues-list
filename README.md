@@ -11,7 +11,7 @@ $ npm start
 
 ### 동작 영상
 
-<img width='900px' src='https://github.com/richcollector/issues-list/assets/104312779/d0659d00-8da7-4512-9bd9-dbb3348b0815' alt='issues-list' />
+<img width='800px' src='https://github.com/richcollector/issues-list/assets/104312779/297ef2ce-341d-4f93-b097-6a7e3665476a' alt='issues-list' />
 
 ## 🔧 기술 스택
 
