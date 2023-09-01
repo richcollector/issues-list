@@ -2,24 +2,29 @@ import { Fragment, useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { issuesList } from '../../api/Api';
 import { getDate } from '../../utils/constants/getDate';
+import { IssueType } from '../../utils/types/Issue';
+import LoadingPage from '../Loading/Loading';
 import ROUTES from '../../utils/constants/Routes';
 import styles from '../../utils/styles/IssuesList.module.scss';
 
 function IssuesListPage() {
-	const [list, setList] = useState([]);
+	const [list, setList] = useState<IssueType[]>([]);
 	const navigate = useNavigate();
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState<number>(1);
+	const [isLoading, setLoading] = useState<boolean>(true);
 	const containerRef = useRef(null);
 
 	useEffect(() => {
+		setLoading(true);
 		issuesList(page)
 			.then(res => {
-				setList((prev): any => [...prev, ...res.data]);
+				setList((prev): IssueType[] => [...prev, ...res.data]);
+				setLoading(false);
 			})
 			.catch(error => {
 				navigate(ROUTES.ERROR);
 			});
-	}, [page]);
+	}, [page, navigate]);
 
 	useEffect(() => {
 		const options = {
@@ -58,7 +63,7 @@ function IssuesListPage() {
 								window.open(`${ROUTES.WANTED}`, '_blank', 'fullscreen');
 							}}
 						>
-							<img src={`${ROUTES.WANTED_IMG}`} alt=""></img>
+							<img src={`${ROUTES.WANTED_IMG}`} alt="wanted_img"></img>
 						</div>
 					)}
 					<div className={styles.itemBox} onClick={() => navigate(`/${issues.number}`)}>
@@ -78,7 +83,9 @@ function IssuesListPage() {
 					</div>
 				</Fragment>
 			))}
-			<div ref={containerRef} style={{ height: '10px' }}></div>
+			<div ref={containerRef} style={{ height: '30px' }}>
+				{isLoading && <LoadingPage />}
+			</div>
 		</div>
 	);
 }
